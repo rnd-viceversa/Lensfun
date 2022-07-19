@@ -31,6 +31,15 @@ lfCamera::lfCamera (const lfCamera &other)
     Variant = lf_mlstr_dup (other.Variant);
     Mount = g_strdup (other.Mount);
     CropFactor = other.CropFactor;
+    
+    WidthSensor = other.WidthSensor;
+    HeightSensor = other.HeightSensor;
+    WidthResolution = other.WidthResolution;
+    HeightResolution = other.HeightResolution;
+    MinIso = other.MinIso;
+    MaxIso = other.MaxIso;
+    MinSpeed = other.MinSpeed;
+    MaxSpeed = other.MaxSpeed;
 }
 
 lfCamera &lfCamera::operator = (const lfCamera &other)
@@ -43,6 +52,15 @@ lfCamera &lfCamera::operator = (const lfCamera &other)
     Variant = lf_mlstr_dup (other.Variant);
     _lf_setstr (&Mount, other.Mount);
     CropFactor = other.CropFactor;
+    
+    WidthSensor = other.WidthSensor;
+    HeightSensor = other.HeightSensor;
+    WidthResolution = other.WidthResolution;
+    HeightResolution = other.HeightResolution;
+    MinIso = other.MinIso;
+    MaxIso = other.MaxIso;
+    MinSpeed = other.MinSpeed;
+    MaxSpeed = other.MaxSpeed;
     return *this;
 }
 

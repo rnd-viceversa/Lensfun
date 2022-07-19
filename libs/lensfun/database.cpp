@@ -244,6 +244,58 @@ static void _xml_start_element (GMarkupParseContext *context,
         pd->camera = new lfCamera ();
         if (!__chk_no_attrs(element_name, attribute_names, error)) return;
     }
+    else if (!strcmp (element_name, "sensor"))
+    {
+        if (!ctx || strcmp (ctx, "camera") || !pd->camera)
+            goto bad_ctx;
+
+        for (i = 0; attribute_names [i]; i++)
+            if (!strcmp (attribute_names [i], "width"))
+                pd->camera->WidthSensor = atof (attribute_values [i]);
+            else if (!strcmp (attribute_names [i], "height"))
+                pd->camera->HeightSensor = atof (attribute_values [i]);
+            else
+                goto bad_attr;
+    }
+    else if (!strcmp (element_name, "resolution"))
+    {
+        if (!ctx || strcmp (ctx, "camera") || !pd->camera)
+            goto bad_ctx;
+
+        for (i = 0; attribute_names [i]; i++)
+            if (!strcmp (attribute_names [i], "width"))
+                pd->camera->WidthResolution = atof (attribute_values [i]);
+            else if (!strcmp (attribute_names [i], "height"))
+                pd->camera->HeightResolution = atof (attribute_values [i]);
+            else
+                goto bad_attr;
+    }
+    else if (!strcmp (element_name, "iso"))
+    {
+        if (!ctx || strcmp (ctx, "camera") || !pd->camera)
+            goto bad_ctx;
+
+        for (i = 0; attribute_names [i]; i++)
+            if (!strcmp (attribute_names [i], "min"))
+                pd->camera->MinIso = atof (attribute_values [i]);
+            else if (!strcmp (attribute_names [i], "max"))
+                pd->camera->MaxIso = atof (attribute_values [i]);
+            else
+                goto bad_attr;
+    }
+    else if (!strcmp (element_name, "speed"))
+    {
+        if (!ctx || strcmp (ctx, "camera") || !pd->camera)
+            goto bad_ctx;
+
+        for (i = 0; attribute_names [i]; i++)
+            if (!strcmp (attribute_names [i], "min"))
+                pd->camera->MinSpeed = atof (attribute_values [i]);
+            else if (!strcmp (attribute_names [i], "max"))
+                pd->camera->MaxSpeed = atof (attribute_values [i]);
+            else
+                goto bad_attr;
+    }
     else if (!strcmp (element_name, "lens"))
     {
         if (!ctx || strcmp (ctx, "lensdatabase"))

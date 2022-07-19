@@ -331,6 +331,19 @@ struct LF_EXPORT lfCamera
     float CropFactor;
     /** @brief Camera matching score, used while searching: not actually a camera parameter */
     int Score;
+    
+    /** @brief Camera sensor size */
+    float WidthSensor;
+    float HeightSensor;
+    /** @brief Camera resolution */
+    int WidthResolution;
+    int HeightResolution;
+    /** @brief Iso latitude */
+    int MinIso;
+    int MaxIso;
+    /** @brief Camera speed */
+    float MinSpeed;
+    float MaxSpeed;
 
 #ifdef __cplusplus
     /**
