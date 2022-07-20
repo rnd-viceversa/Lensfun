@@ -1,6 +1,6 @@
 INCLUDE(FindPkgConfig)
 IF (PKG_CONFIG_FOUND)
-    PKG_SEARCH_MODULE( GLIB2 glib-2.0 )
+    PKG_SEARCH_MODULE( GLIB2 glib-2.0 IMPORTED_TARGET)
     IF(WIN32 AND NOT BUILD_STATIC)
         FIND_FILE(GLIB2_DLL 
                 NAMES glib-2.dll glib-2-vs9.dll libglib-2.0-0.dll
