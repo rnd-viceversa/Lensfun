@@ -2,8 +2,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8 FATAL_ERROR )
 
 # path for helper modules
-set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_SOURCE_DIR}/cmake/modules")
-GET_FILENAME_COMPONENT(SOURCE_BASE_DIR ${CMAKE_SOURCE_DIR} PATH CACHE)
+set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
+GET_FILENAME_COMPONENT(SOURCE_BASE_DIR ${CMAKE_CURRENT_SOURCE_DIR} PATH CACHE)
 
 #  global setup
 project(lensfun C CXX)
@@ -24,11 +24,11 @@ CHECK_INCLUDE_FILES(regex.h HAVE_REGEX_H)
 CHECK_INCLUDE_FILES(endian.h HAVE_ENDIAN_H)
 
 # set include directories
-INCLUDE_DIRECTORIES(${CMAKE_BINARY_DIR})
-INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include/lensfun)
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_BINARY_DIR})
+INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include/lensfun)
 IF(NOT HAVE_REGEX_H)
-  INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/include/regex)
-  INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/libs/regex)
+  INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include/regex)
+  INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/libs/regex)
 ENDIF()
 
 IF(CMAKE_SYSTEM_PROCESSOR MATCHES "[XxIi][0-9]?86|[Aa][Mm][Dd]64")
@@ -55,7 +55,7 @@ ENDIF()
 
 # set local install prefix on windows
 IF(WIN32 AND CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)  
-  SET(CMAKE_INSTALL_PREFIX "${CMAKE_SOURCE_DIR}/install" CACHE PATH "Install prefix for Lensfun" FORCE)    
+  SET(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_SOURCE_DIR}/install" CACHE PATH "Install prefix for Lensfun" FORCE)    
 ENDIF()
 # get standard GNU install directories for the current platform
 INCLUDE(GNUInstallDirs)
@@ -80,7 +80,7 @@ IF(BUILD_FOR_SSE2)
 ENDIF()
 
 IF(WIN32)
-  INCLUDE_DIRECTORIES(${CMAKE_SOURCE_DIR}/libs/getopt)
+  INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/libs/getopt)
   # base path for searching for glib on windows
   IF(NOT GLIB2_BASE_DIR)
     SET(GLIB2_BASE_DIR "${SOURCE_BASE_DIR}/glib-2.28.1" CACHE STRING "Base path of glib2 dir." FORCE)
@@ -143,9 +143,9 @@ IF(WIN32)
 ENDIF(WIN32)
 
 # create config.h file
-CONFIGURE_FILE(include/lensfun/config.h.in.cmake ${CMAKE_BINARY_DIR}/config.h)
+CONFIGURE_FILE(include/lensfun/config.h.in.cmake ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 # create lensfun.h file
-CONFIGURE_FILE(include/lensfun/lensfun.h.in ${CMAKE_BINARY_DIR}/lensfun.h @ONLY)
+CONFIGURE_FILE(include/lensfun/lensfun.h.in ${CMAKE_CURRENT_BINARY_DIR}/lensfun.h @ONLY)
 
 # include libs
 ADD_SUBDIRECTORY(libs)
@@ -160,7 +160,7 @@ ENDIF()
 ADD_SUBDIRECTORY(apps)
 
 # install include files
-INSTALL(FILES ${CMAKE_BINARY_DIR}/lensfun.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lensfun)
+INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lensfun.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lensfun)
 IF(NOT HAVE_REGEX_H)
   INSTALL(FILES include/regex/regex.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/regex)
 ENDIF()

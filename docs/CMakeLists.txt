@@ -4,7 +4,7 @@ FIND_PACKAGE(Doxygen REQUIRED)
 # set some files/path for later user
 # we don't use path doc because path doc is used by cmake itself because
 # of target doc
-SET(CMAKE_DOC_OUT ${CMAKE_BINARY_DIR}/doc_doxygen)
+SET(CMAKE_DOC_OUT ${CMAKE_CURRENT_BINARY_DIR}/doc_doxygen)
 set(DOXYFILE "${CMAKE_CURRENT_BINARY_DIR}/doxyfile")
 
 # create doxyfile

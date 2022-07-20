@@ -654,8 +654,8 @@ WARN_LOGFILE           =
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
 
-INPUT                  = @CMAKE_SOURCE_DIR@/docs/manual-main.txt \
-                         @CMAKE_BINARY_DIR@/lensfun.h
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/docs/manual-main.txt \
+                         @CMAKE_CURRENT_BINARY_DIR@/lensfun.h
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is
@@ -715,7 +715,7 @@ EXCLUDE_SYMBOLS        =
 # directories that contain example code fragments that are included (see
 # the \include command).
 
-EXAMPLE_PATH           = @CMAKE_SOURCE_DIR@
+EXAMPLE_PATH           = @CMAKE_CURRENT_SOURCE_DIR@
 
 # If the value of the EXAMPLE_PATH tag contains directories, you can use the
 # EXAMPLE_PATTERNS tag to specify one or more wildcard pattern (like *.cpp
@@ -1218,7 +1218,7 @@ MATHJAX_EXTENSIONS     =
 # The MATHJAX_CODEFILE tag can be used to specify a file with javascript
 # pieces of code that will be used on startup of the MathJax code.
 
-MATHJAX_CODEFILE       = @CMAKE_SOURCE_DIR@/docs/mathjaxConfiguration.js
+MATHJAX_CODEFILE       = @CMAKE_CURRENT_SOURCE_DIR@/docs/mathjaxConfiguration.js
 
 # When the SEARCHENGINE tag is enabled doxygen will generate a search box
 # for the HTML output. The underlying search engine uses javascript
