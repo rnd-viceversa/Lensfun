@@ -1,5 +1,5 @@
-# require at least cmake 2.8
-CMAKE_MINIMUM_REQUIRED(VERSION 2.8 FATAL_ERROR )
+# require at least cmake 3.13
+CMAKE_MINIMUM_REQUIRED(VERSION 3.13 FATAL_ERROR )
 
 # path for helper modules
 set(CMAKE_MODULE_PATH "${CMAKE_MODULE_PATH}" "${CMAKE_CURRENT_SOURCE_DIR}/cmake/modules")
@@ -40,6 +40,7 @@ ENDIF()
 # options controlling the build process
 OPTION(BUILD_STATIC "Build static library" OFF)
 OPTION(BUILD_TESTS "Build test suite" OFF)
+OPTION(BUILD_APPS "Build applications" ON)
 OPTION(BUILD_LENSTOOL "Build the lenstool (requires libpng)" OFF)
 OPTION(BUILD_FOR_SSE "Build with support for SSE" ${X86_ON})
 OPTION(BUILD_FOR_SSE2 "Build with support for SSE2" ${X86_ON})
@@ -157,7 +158,9 @@ IF(BUILD_TESTS)
 ENDIF()
 
 # apps subdir
-ADD_SUBDIRECTORY(apps)
+IF(BUILD_APPS)
+    ADD_SUBDIRECTORY(apps)
+ENDIF()
 
 # install include files
 INSTALL(FILES ${CMAKE_CURRENT_BINARY_DIR}/lensfun.h DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/lensfun)
@@ -195,6 +198,7 @@ ENDIF()
 MESSAGE(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
 MESSAGE(STATUS "Build doc: ${BUILD_DOC}")
 MESSAGE(STATUS "Build test suite: ${BUILD_TESTS}")
+MESSAGE(STATUS "Build applications: ${BUILD_APPS}")
 MESSAGE(STATUS "Build lenstool: ${BUILD_LENSTOOL}")
 MESSAGE(STATUS "Build with support for SSE: ${BUILD_FOR_SSE}")
 MESSAGE(STATUS "Build with support for SSE2: ${BUILD_FOR_SSE2}")
